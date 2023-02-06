@@ -1,6 +1,5 @@
 using API.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.JSInterop.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +45,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(opt=>
+{
+    opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+});
 
 app.UseAuthorization();
 
