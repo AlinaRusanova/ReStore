@@ -1,12 +1,10 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import AboutPage from "../../features/about/AboutPage";
-// import Login from "../../features/account/Login";
-// import Register from "../../features/account/Register";
 // import Inventory from "../../features/admin/Inventory";
 import BasketPage from "../../features/basket/BasketPage";
 import Catalog from "../../features/catalog/Catalog";
 import ProductDetails from "../../features/catalog/ProductDetails";
-// import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
+import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
 import ContactPage from "../../features/contact/ContactPage";
 import Login from "../../features/account/Login";
 // import Orders from "../../features/orders/Orders";
@@ -14,7 +12,9 @@ import NotFound from "../errors/NotFound";
 // import ServerError from "../errors/ServerError";
 import App from "../layout/App";
 import Register from "../../features/account/Register";
-// import RequireAuth from "./RequireAuth";
+import CheckoutPage from "../../features/checkout/CheckoutPage";
+import Orders from "../../features/orders/Orders";
+import RequireAuth from "./RequireAuth";
 
 export const router = createBrowserRouter([
     {
@@ -22,10 +22,10 @@ export const router = createBrowserRouter([
         element: <App />,
         children: [
             // authenticated routes
-            // {element: <RequireAuth />, children: [
-            //     {path: 'checkout', element: <CheckoutWrapper />},
-            //     {path: 'orders', element: <Orders />},
-            // ]},
+            {element: <RequireAuth />, children: [
+               // {path: 'checkout', element: <CheckoutWrapper />},
+                {path: 'orders', element: <Orders />},
+            ]},
             // admin routes
             // {element: <RequireAuth roles={['Admin']} />, children: [
             //     {path: 'inventory', element: <Inventory />},
@@ -39,6 +39,7 @@ export const router = createBrowserRouter([
             {path: 'basket', element: <BasketPage />},
             {path: 'login', element: <Login />},
             {path: 'register', element: <Register />},
+            {path: 'checkout', element: <CheckoutPage />},//!!!!! 
             {path: '*', element: <Navigate replace to='/not-found' />}
         ]
     }
